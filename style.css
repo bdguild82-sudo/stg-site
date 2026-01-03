@@ -1,0 +1,111 @@
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:'Orbitron',sans-serif;
+    min-height:100vh;
+    display:flex;
+    background:linear-gradient(-45deg,#020824,#04133a,#0a2a66);
+    background-size:400% 400%;
+    animation:gradientMove 14s ease infinite;
+    color:#e6f0ff;
+}
+
+@keyframes gradientMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+#loadingScreen{
+    position:fixed;
+    inset:0;
+    background:#020824;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+    animation:fadeOut 1s forwards 2.5s;
+}
+
+@keyframes fadeOut{to{opacity:0;visibility:hidden}}
+
+.loader{
+    width:60px;height:60px;
+    border:6px solid rgba(255,255,255,.2);
+    border-top-color:#4da3ff;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.sidebar{
+    width:160px;
+    margin:20px;
+    padding:15px;
+    background:#001a3d;
+    border-radius:16px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.sidebar-item,.dropdown-item{
+    background:rgba(255,255,255,.12);
+    padding:10px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.dropdown{display:none;flex-direction:column;gap:6px;margin-left:8px}
+
+.content{flex:1;padding:40px}
+
+#welcomePage{
+    height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.typing-loop{
+    font-size:40px;
+    border-right:3px solid white;
+}
+
+.continue-btn{
+    margin-top:30px;
+    padding:12px 25px;
+    background:#0a4cff;
+    border:none;
+    border-radius:10px;
+    color:white;
+    cursor:pointer;
+}
+
+.list{
+    background:rgba(0,0,0,.4);
+    padding:20px;
+    border-radius:14px;
+    margin-bottom:30px;
+}
+
+.item{padding:8px 0}
+
+.rank1{color:gold}
+.rank2{color:silver}
+.rank3{color:#cd7f32}
+
+.slash::after{
+    content:"";
+    position:absolute;
+    inset:-150%;
+    background:linear-gradient(135deg,transparent 48%,white 50%,transparent 52%);
+    animation:slashLoop 6.5s infinite;
+}
+
+@keyframes slashLoop{
+    0%{transform:translate(-130%,-130%)}
+    100%{transform:translate(130%,130%)}
+}
