@@ -2,177 +2,212 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>STG</title>
+<title>STG Rankings</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:'Orbitron',sans-serif;
+    min-height:100vh;
+    background:linear-gradient(-45deg,#020824,#04133a,#0a2a66,#04133a);
+    background-size:400% 400%;
+    animation:gradientMove 14s ease infinite;
+    color:#e6f0ff;
 }
 
-body {
-    height: 100vh;
-    font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(-45deg, #020824, #04133a, #0a2a66, #04133a);
-    background-size: 400% 400%;
-    animation: gradientMove 12s ease infinite;
-    overflow: hidden;
+@keyframes gradientMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
 
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:60px 20px;
 }
 
-#home {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #e6f0ff;
-    text-align: center;
+h1{
+    text-align:center;
+    font-size:90px;
+    margin-bottom:50px;
+    text-shadow:0 0 30px rgba(120,180,255,.7);
+}
+.section{margin-bottom:60px}
+
+.section h2{
+    font-size:32px;
+    margin-bottom:20px;
+    color:#9cc9ff;
+    text-shadow:0 0 15px rgba(120,180,255,.6);
 }
 
-h1 {
-    font-size: 140px;
-    font-weight: 900;
-    text-shadow:
-        0 0 15px rgba(80,140,255,.6),
-        0 0 35px rgba(80,140,255,.4),
-        0 0 70px rgba(80,140,255,.25);
+.list{
+    background:rgba(5,15,40,.7);
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 0 30px rgba(0,0,0,.4);
 }
 
-#continueBtn {
-    margin-top: 40px;
-    padding: 18px 60px;
-    font-size: 26px;
-    font-weight: 900;
-    color: #ffd87a;
-    background: linear-gradient(180deg, #ffd87a, #cfa642);
-    border: 2px solid #fff;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 8px 0 #9c7a2f, 0 0 25px rgba(255,215,120,.6);
-    transition: transform 0.2s;
+/* ===== ITEMS ===== */
+.item{
+    position:relative;
+    padding:10px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    transition:.25s ease;
+    overflow:hidden;
+}
+.item:hover{
+    transform:scale(1.06) translateX(6px);
+    text-shadow:0 0 12px rgba(150,200,255,.9);
+}
+.item:last-child{border-bottom:none}
+.rank1{color:gold}
+.rank2{color:silver}
+.rank3{color:#cd7f32}
+.slash::after{
+    content:"";
+    position:absolute;
+    top:-150%;
+    left:-150%;
+    width:300%;
+    height:300%;
+    background:linear-gradient(
+        135deg,
+        transparent 46%,
+        rgba(255,255,255,.85) 50%,
+        transparent 54%
+    );
+    animation:slashLoop 6.5s ease-in-out infinite;
+    pointer-events:none;
 }
 
-#continueBtn:hover {
-    transform: scale(1.05);
+@keyframes slashLoop{
+    0%{transform:translate(-130%,-130%);opacity:0}
+    15%{opacity:1}
+    60%{transform:translate(130%,130%);opacity:1}
+    100%{transform:translate(130%,130%);opacity:0}
 }
 
-#credit {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #9cc7ff;
+/* ===== CREDIT ===== */
+.credit{
+    margin-top:80px;
+    text-align:center;
+    font-size:18px;
+    font-weight:900;
+    color:white;
+    animation:floatGlow 3s ease-in-out infinite;
+    text-shadow:0 0 15px rgba(255,255,255,.7);
 }
-
-#rankPage {
-    display: none;
-    height: 100%;
-    padding: 40px;
-    overflow-y: auto;
-}
-
-.rank {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 10px;
-    color: #e6f0ff;
-    font-size: 18px;
-    transition: all 0.2s;
-    cursor: pointer;
-}
-
-.rank span {
-    width: 60px;
-    color: #9cc7ff;
-}
-
-.rank:hover {
-    transform: translateX(10px);
-    color: #ffd87a;
-    text-shadow: 0 0 10px #ffd87a;
+@keyframes floatGlow{
+    0%{transform:translateY(0);opacity:.8}
+    50%{transform:translateY(-6px);opacity:1}
+    100%{transform:translateY(0);opacity:.8}
 }
 </style>
 </head>
+
 <body>
+<div class="container">
 
-<div id="home">
-    <h1>STG</h1>
-    <button id="continueBtn">CONTINUE</button>
-    <div id="credit">Made By STG_Xama / @roxama</div>
+<h1>STG</h1>
+
+<!-- PRO -->
+<div class="section">
+<h2>👑 PRO DIVISION (R7 High → R10 High)</h2>
+<div class="list">
+<div class="item rank1 slash">🥇 STG_jakeoclaus — R10 (High)</div>
+<div class="item rank2 slash">🥈 STG_robbing — R10 (Mid)</div>
+<div class="item rank3 slash">🥉 STG_polar — R10 (Low)</div>
+<div class="item">4. STG_B1UES — R8 (High)</div>
+<div class="item">5. STG_z — R8 (Mid)</div>
+<div class="item">6. STG_Korpy — R8 (Mid)</div>
+<div class="item">7. STG_951 — R8 (Low)</div>
+<div class="item">8. STG_Demon — R8 (Low)</div>
+<div class="item">9. STG_Martin — R7 (High)</div>
+<div class="item">10. STG_clawfenter — R7 (High)</div>
+<div class="item">11. STG_Despised — R7 (High)</div>
+</div>
 </div>
 
-<div id="rankPage">
-<div class="rank"><span>#1 🥇</span>STG_jakeoclaus — R10 (High)</div>
-<div class="rank"><span>#2 🥈</span>STG_robbing — R10 (Mid)</div>
-<div class="rank"><span>#3 🥉</span>STG_polar — R10 (Low)</div>
-<div class="rank"><span>#4</span>STG_B1UES — R8 (High)</div>
-<div class="rank"><span>#5</span>STG_z — R8 (Mid)</div>
-<div class="rank"><span>#6</span>STG_Korpy — R8 (Mid)</div>
-<div class="rank"><span>#7</span>STG_951 — R8 (Low)</div>
-<div class="rank"><span>#8</span>STG_Demon — R8 (Low)</div>
-<div class="rank"><span>#9</span>STG_Martin — R7 (High)</div>
-<div class="rank"><span>#10</span>STG_clawfenter — R7 (High)</div>
-<div class="rank"><span>#11</span>STG_Despised — R7 (High)</div>
-<div class="rank"><span>#12</span>STG_Riot — R7 (Mid)</div>
-<div class="rank"><span>#13</span>STG_Zapp — R7 (Mid)</div>
-<div class="rank"><span>#14</span>STG_RardoJr — R7 (Mid)</div>
-<div class="rank"><span>#15</span>STG_Zins — R7 (Mid)</div>
-<div class="rank"><span>#16</span>STG_BlackPerson — R7 (Mid)</div>
-<div class="rank"><span>#17</span>STG_Rosella — R7 (Mid)</div>
-<div class="rank"><span>#18</span>STG_trevin — R7 (Mid)</div>
-<div class="rank"><span>#19</span>STG_Drizzy — R7 (Mid)</div>
-<div class="rank"><span>#20</span>STG_blitz — R7 (Low)</div>
-<div class="rank"><span>#21</span>STG_Assault — R7 (Low)</div>
-<div class="rank"><span>#22</span>STG_Notuser — R7 (Low)</div>
-<div class="rank"><span>#23</span>STG_nope — R7 (Low)</div>
-<div class="rank"><span>#24</span>STG_Lzzr — R6 (High)</div>
-<div class="rank"><span>#25</span>STG_syrup — R6 (High)</div>
-<div class="rank"><span>#26</span>STG_berserk — R6 (Mid)</div>
-<div class="rank"><span>#27</span>STG_Maxi — R6 (Mid)</div>
-<div class="rank"><span>#28</span>STG_Cooldude — R6 (Mid)</div>
-<div class="rank"><span>#29</span>STG_karlshoney — R6 (Mid)</div>
-<div class="rank"><span>#30</span>STG_Kaka — R6 (Mid)</div>
-<div class="rank"><span>#31</span>STG_rake — R6 (Mid)</div>
-<div class="rank"><span>#32</span>STG_MasterOfGoon — R6 (Mid)</div>
-<div class="rank"><span>#33</span>STG_R6_btw — R6 (Mid)</div>
-<div class="rank"><span>#34</span>STG_slime — R5 (High)</div>
-<div class="rank"><span>#35</span>STG_BaoNoobCool — R5 (High)</div>
-<div class="rank"><span>#36</span>STG_Kindsoul — R5 (High)</div>
-<div class="rank"><span>#37</span>STG_RebornDemon — R5 (High)</div>
-<div class="rank"><span>#38</span>STG_t00n — R5 (High)</div>
-<div class="rank"><span>#39</span>STG_mogged — R5 (High)</div>
-<div class="rank"><span>#40</span>STG_Xama — R5 (High)</div>
-<div class="rank"><span>#41</span>STG_bloo — R5 (Mid)</div>
-<div class="rank"><span>#42</span>STG_Alexander — R5 (Mid)</div>
-<div class="rank"><span>#43</span>STG_Kakashi — R5 (Mid)</div>
-<div class="rank"><span>#43</span>STG_Dark — R5 (Mid)</div>
-<div class="rank"><span>#44</span>STG_Toast — R5 (Mid)</div>
-<div class="rank"><span>#45</span>STG_sin — R5 (Mid)</div>
-<div class="rank"><span>#46</span>STG_cloudy — R5 (Low)</div>
-<div class="rank"><span>#47</span>STG_Vortex — R5 (Low)</div>
-<div class="rank"><span>#48</span>STG_ravenn — R5 (Low)</div>
-<div class="rank"><span>#49</span>STG_SlimeEmOut — R4 (High)</div>
-<div class="rank"><span>#50</span>STG_Eli — R4 (High)</div>
-<div class="rank"><span>⚠️</span>UNRANKED: STG_Rardo, STG_Toast, STGLeah, STG+++, STG_rardojr, STG_K1ng, STG_s1im, STG_c3rxs, STG_Bigamigo, STG_Blobby, STG_Demon, STG_Frosty, STG_germ, STG_H2PE, STG_ISAAC, STG_Kap, STG_littlecock, STG_luhdemon, STG_Mick, STG_Mugen</div>
+<!-- ELITE -->
+<div class="section">
+<h2>🔵👑 ELITE DIVISION (R6 Mid → R7 Mid)</h2>
+<div class="list">
+<div class="item">STG_Riot — R7 (Mid)</div>
+<div class="item">STG_Zapp — R7 (Mid)</div>
+<div class="item">STG_RardoJr — R7 (Mid)</div>
+<div class="item">STG_Zins — R7 (Mid)</div>
+<div class="item">STG_BlackPerson — R7 (Mid)</div>
+<div class="item">STG_Rosella — R7 (Mid)</div>
+<div class="item">STG_trevin — R7 (Mid)</div>
+<div class="item">STG_Drizzy — R7 (Mid)</div>
+<div class="item">STG_blitz — R7 (Mid)</div>
+<div class="item">STG_Assault — R7 (Low)</div>
+<div class="item">STG_Notuser — R7 (Low)</div>
+<div class="item">STG_nope — R7 (Low)</div>
+<div class="item">STG_Lzzr — R6 (High)</div>
+<div class="item">STG_syrup — R6 (High)</div>
+<div class="item">STG_berserk — R6 (Mid)</div>
+<div class="item">STG_RebornDemon — R6 (Mid)</div>
+<div class="item">STG_Oblivious — R6 (Mid)</div>
+<div class="item">STG_Maxi — R6 (Mid)</div>
+<div class="item">STG_Cooldude — R6 (Mid)</div>
+<div class="item">STG_karlshoney — R6 (Mid)</div>
+<div class="item">STG_Kaka — R6 (Mid)</div>
+<div class="item">STG_rake — R6 (Mid)</div>
+<div class="item">STG_MasterOfGoon — R6 (Mid)</div>
+<div class="item">STG_R6_btw — R6 (Mid)</div>
+<div class="item">STG_Xama — R6 (Low)</div>
+<div class="item">STG_Eclipes — R6 (Low)</div>
+</div>
 </div>
 
-<script>
-const home = document.getElementById("home");
-const rankPage = document.getElementById("rankPage");
-const continueBtn = document.getElementById("continueBtn");
+<!-- DANGEROUS -->
+<div class="section">
+<h2>⚠️👑 DANGEROUS DIVISION (R5 Low → R6 Low)</h2>
+<div class="list">
+<div class="item">STG_slime — R5 (High)</div>
+<div class="item">STG_BaoNoobCool — R5 (High)</div>
+<div class="item">STG_Kindsoul — R5 (High)</div>
+<div class="item">STG_t00n — R5 (High)</div>
+<div class="item">STG_mogged — R5 (High)</div>
+<div class="item">STG_bloo — R5 (Mid)</div>
+<div class="item">STG_Alexander — R5 (Mid)</div>
+<div class="item">STG_Dark — R5 (Mid)</div>
+<div class="item">STG_Toast — R5 (Mid)</div>
+<div class="item">STG_sin — R5 (Mid)</div>
+</div>
+</div>
 
-continueBtn.onclick = () => {
-    home.style.display = "none";
-    rankPage.style.display = "block";
-};
-</script>
+<!-- CASUAL -->
+<div class="section">
+<h2>🎮👑 CASUAL DIVISION (R4 High → R5 Low)</h2>
+<div class="list">
+<div class="item">STG_cloudy — R5 (Low)</div>
+<div class="item">STG_Vortex — R5 (Low)</div>
+<div class="item">STG_ravenn — R5 (Low)</div>
+<div class="item">STG_SlimeEmOut — R4 (High)</div>
+<div class="item">STG_Eli — R4 (High)</div>
+<div class="item">STG_Uzi — R4 (Mid)</div>
+<div class="item">STG_ALF — R4 (Mid)</div>
+</div>
+</div>
 
+<!-- BUNS -->
+<div class="section">
+<h2>💩 BUNS DIVISION</h2>
+<div class="list">
+<div class="item">STG_Kakashi — Gay Certified Buns -Under R1 Low</div>
+</div>
+</div>
+
+<div class="credit">Site Developed by @STG_Xama</div>
+
+</div>
 </body>
+</html>
 </html>
