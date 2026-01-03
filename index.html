@@ -97,9 +97,52 @@ h1{
     margin-bottom:50px;
     text-shadow:0 0 30px rgba(120,180,255,.7);
 }
+#welcomePage{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:80vh;
+    text-align:center;
+}
 
+.typing{
+    font-size:40px;
+    width:0;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right:3px solid #fff;
+    animation:typing 4s steps(40,end) forwards, blink .7s infinite;
+}
+
+@keyframes typing{
+    from{width:0}
+    to{width:100%}
+}
+
+@keyframes blink{
+    0%{border-color:white}
+    50%{border-color:transparent}
+    100%{border-color:white}
+}
+
+.continue-btn{
+    margin-top:40px;
+    padding:12px 25px;
+    background:#0a4cff;
+    border:none;
+    border-radius:10px;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.continue-btn:hover{
+    transform:scale(1.1);
+    background:#3d6dff;
+}
 .section{margin-bottom:60px}
-
 .section h2{
     font-size:32px;
     margin-bottom:20px;
@@ -172,10 +215,11 @@ h1{
 <body>
 
 <div class="sidebar">
+    <div class="sidebar-item" onclick="loadPage('welcome')">Welcome</div>
     <div class="sidebar-item" onclick="loadPage('rank')">Rank Page</div>
     <div class="sidebar-item" onclick="toggleDropdown('clipsDrop')">Clips ▼</div>
     <div id="clipsDrop" class="dropdown">
-        <div class="dropdown-item" onclick="loadPage('clips')">Clan CLips</div>
+        <div class="dropdown-item" onclick="loadPage('clips')">Clan Clips</div>
     </div>
     <div class="sidebar-item" onclick="toggleDropdown('scrimDrop')">Scrim ▼</div>
     <div id="scrimDrop" class="dropdown">
@@ -184,12 +228,14 @@ h1{
 </div>
 
 <div id="content" class="content">
-
-<div id="rankPage">
+<div id="welcomePage">
+    <div class="typing">Welcome to the official STG CLAN WEBSITE</div>
+    <button class="continue-btn" onclick="loadPage('rank')">Continue</button>
+</div>
+<div id="rankPage" style="display:none;">
 <div class="container">
 
 <h1>STG</h1>
-
 <div class="section">
 <h2>👑 PRO DIVISION (R7 High → R10 High)</h2>
 <div class="list">
@@ -206,75 +252,6 @@ h1{
 <div class="item">11. STG_Despised — R7 (High)</div>
 </div>
 </div>
-
-<div class="section">
-<h2>🔵👑 ELITE DIVISION (R6 Mid → R7 Mid)</h2>
-<div class="list">
-<div class="item">STG_Riot — R7 (Mid)</div>
-<div class="item">STG_Zapp — R7 (Mid)</div>
-<div class="item">STG_RardoJr — R7 (Mid)</div>
-<div class="item">STG_Zins — R7 (Mid)</div>
-<div class="item">STG_BlackPerson — R7 (Mid)</div>
-<div class="item">STG_Rosella — R7 (Mid)</div>
-<div class="item">STG_trevin — R7 (Mid)</div>
-<div class="item">STG_Drizzy — R7 (Mid)</div>
-<div class="item">STG_blitz — R7 (Mid)</div>
-<div class="item">STG_Assault — R7 (Low)</div>
-<div class="item">STG_Notuser — R7 (Low)</div>
-<div class="item">STG_nope — R7 (Low)</div>
-<div class="item">STG_Lzzr — R6 (High)</div>
-<div class="item">STG_syrup — R6 (High)</div>
-<div class="item">STG_berserk — R6 (High)</div>
-<div class="item">STG_RebornDemon — R6 (Mid)</div>
-<div class="item">STG_Oblivious — R6 (Mid)</div>
-<div class="item">STG_Maxi — R6 (Mid)</div>
-<div class="item">STG_Cooldude — R6 (Mid)</div>
-<div class="item">STG_karlshoney — R6 (Mid)</div>
-<div class="item">STG_Kaka — R6 (Mid)</div>
-<div class="item">STG_rake — R6 (Mid)</div>
-<div class="item">STG_MasterOfGoon — R6 (Mid)</div>
-<div class="item">STG_R6_btw — R6 (Mid)</div>
-<div class="item">STG_Xama — R6 (Low)</div>
-<div class="item">STG_Eclipes — R6 (Low)</div>
-</div>
-</div>
-
-<div class="section">
-<h2>⚠️👑 DANGEROUS DIVISION (R5 Low → R6 Low)</h2>
-<div class="list">
-<div class="item">STG_slime — R5 (High)</div>
-<div class="item">STG_BaoNoobCool — R5 (High)</div>
-<div class="item">STG_Kindsoul — R5 (High)</div>
-<div class="item">STG_t00n — R5 (High)</div>
-<div class="item">STG_mogged — R5 (High)</div>
-<div class="item">STG_bloo — R5 (Mid)</div>
-<div class="item">STG_Alexander — R5 (Mid)</div>
-<div class="item">STG_Dark — R5 (Mid)</div>
-<div class="item">STG_Toast — R5 (Mid)</div>
-<div class="item">STG_sin — R5 (Mid)</div>
-</div>
-</div>
-
-<div class="section">
-<h2>🎮👑 CASUAL DIVISION (R4 High → R5 Low)</h2>
-<div class="list">
-<div class="item">STG_cloudy — R5 (Low)</div>
-<div class="item">STG_Vortex — R5 (Low)</div>
-<div class="item">STG_ravenn — R5 (Low)</div>
-<div class="item">STG_SlimeEmOut — R4 (High)</div>
-<div class="item">STG_Eli — R4 (High)</div>
-<div class="item">STG_Uzi — R4 (Mid)</div>
-<div class="item">STG_ALF — R4 (Mid)</div>
-</div>
-</div>
-
-<div class="section">
-<h2>💩 BUNS DIVISION</h2>
-<div class="list">
-<div class="item">STG_Kakashi — Gay Certified Buns -Under R1 Low</div>
-</div>
-</div>
-
 <div class="credit">Site Developed by @STG_Xama</div>
 
 </div>
@@ -299,9 +276,12 @@ function toggleDropdown(id){
 }
 
 function loadPage(page){
+    document.getElementById("welcomePage").style.display="none";
     document.getElementById("rankPage").style.display="none";
     document.getElementById("clipsPage").style.display="none";
     document.getElementById("scrimPage").style.display="none";
+
+    if(page==="welcome")document.getElementById("welcomePage").style.display="flex";
     if(page==="rank")document.getElementById("rankPage").style.display="block";
     if(page==="clips")document.getElementById("clipsPage").style.display="block";
     if(page==="scrim")document.getElementById("scrimPage").style.display="block";
@@ -311,6 +291,3 @@ function loadPage(page){
 </body>
 </html>
 
-
-</html>
-</html>
